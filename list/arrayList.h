@@ -37,7 +37,7 @@ public:
 		}
 		array[size] = item;
 		size++;
-		return false;
+		return true;
 	};
 	int getSize() const{return size;};
 	T get(const int index) const{
