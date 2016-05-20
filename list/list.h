@@ -12,7 +12,7 @@ public:
 	virtual bool add(const T& item) = 0;
 	virtual int getSize() const = 0;
 	virtual bool isEmpty() const = 0;
-	virtual bool contains() const = 0;
+	virtual bool contains(const T& item) const = 0;
 	virtual void clear() = 0;
 	virtual T get(const int index) const = 0;
 	virtual T& get(const int index) = 0;

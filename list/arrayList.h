@@ -1,6 +1,5 @@
 #ifndef __ARRAYLIST_H_
 #define __ARRAYLIST_H_
-#include <stdio.h>
 #include "list.h"
 	
 enum ERROR{
@@ -8,17 +7,19 @@ enum ERROR{
 	MemoryAllocError
 };
 
+#define DEFAULT_SIZE (1024)
+
 template <class T>
 class arrayList : public list<T>{
 public:
 	arrayList(){
-		_init(1024);
+		_init(DEFAULT_SIZE);
 	};
 	arrayList(int _capacity){
 		_init(_capacity);
 	};
 	~arrayList(){
-		clear();
+		_clear();
 	};
 	bool add(const T& item){
 		if(size >= capacity){
@@ -50,15 +51,17 @@ public:
 	bool isEmpty() const{
 		return size <= 0;
 	};
-	bool contains() const{
+	bool contains(const T& item) const{
+		for(int i=0; i<size;i++){
+			if(array[i] == item){
+				return true;
+			}
+		}
 		return false;
 	};
 	void clear() {
-		if(array != NULL)
-			delete [] array;
-		array = NULL;
-		capacity = 0;
-		size = 0;
+		_clear();
+		_init(DEFAULT_SIZE);
 	};
 
 private:
@@ -73,6 +76,13 @@ private:
 		if(index < 0 || index > size )
 			throw OutOfBoundError; 
 		return false;
+	};
+	void _clear(){
+		if(array != NULL)
+			delete [] array;
+		array = NULL;
+		capacity = 0;
+		size = 0;
 	};
 private:
 	T* array;
