@@ -2,8 +2,8 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
-#include "arrayList.h"
-#include "linkedList.h"
+#include "ArrayList.h"
+#include "LinkedList.h"
 
 template <class T>
 void test(List<T>* arr){
