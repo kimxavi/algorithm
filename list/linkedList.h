@@ -22,14 +22,15 @@ public:
 		delete tailNode;
 	};
 	bool add(const T& item){
-		Node* n = headNode;
-		while(n->right != tailNode){
-			n = n->right; 
-		}
+		return add(size,item);
+	};
+	bool add(const int index, const T& item){
+		Node* n = _findBeforeNode(index);
 		Node* newNode = new Node(item, n->right);
 		n->right = newNode;
 		size++;
 		return true;
+		
 	};
 	int getSize() const{return size;};
 	bool isEmpty() const{
@@ -57,20 +58,22 @@ public:
 		size = 0;
 	};
 	T get(const int index) const{
-		_indexCheck(index);
-		Node* n = headNode->right;
-		for(int i=0; i< index;i++){
-			n = n->right;
-		}
-		return n->data;
+		Node* n = _findBeforeNode(index);
+		return n->right->data;
 	};
 	T& get(const int index){
-		_indexCheck(index);
-		Node* n = headNode->right;
-		for(int i=0; i< index;i++){
-			n = n->right;
-		}
-		return n->data;
+		Node* n = _findBeforeNode(index);
+		return n->right->data;
+	};
+	T remove(const int index) {
+		Node* n = _findBeforeNode(index);
+		Node* deleteNode = n->right;
+		T val = deleteNode->data;  
+
+		n->right = deleteNode->right; 
+		delete deleteNode; 
+		size--;
+		return val;
 	};
 private:
 	bool _indexCheck(const int index) const {
@@ -99,7 +102,14 @@ private:
 
 	Node* headNode;
 	Node* tailNode;
-
+	Node* _findBeforeNode(const int index) const {
+		_indexCheck(index);
+		Node* beforeNode = headNode;
+		for(int i=0;i<index;i++){
+			beforeNode = beforeNode->right;
+		}
+		return beforeNode;
+	};
 	int size;
 };
 
