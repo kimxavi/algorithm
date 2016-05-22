@@ -3,10 +3,10 @@
 #include <stdio.h>
 
 template <class T>
-class list{
+class List{
 public:
-	list(){};
-	virtual ~list(){};
+	List(){};
+	virtual ~List(){};
 
 public:
 	virtual bool add(const T& item) = 0;

@@ -1,5 +1,5 @@
 CC = g++ 
-OBJS = main.o arrayList.o list.o
+OBJS = main.o ArrayList.o List.o Stack.o Queue.o
 TARGET = test 
  
 .SUFFIXES : .cpp .o

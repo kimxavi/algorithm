@@ -6,7 +6,7 @@
 #include "linkedList.h"
 
 template <class T>
-void test(list<T>* arr){
+void test(List<T>* arr){
 try{
 	for(int i=0; i< 100; i++){
 		arr->add(i);
@@ -42,7 +42,7 @@ int main(int argc,char** argv){
 	sigaction(SIGSEGV, &sa, NULL);
 	//E: catch segmentation fault
 
-	test(new arrayList<int>());
-	test(new linkedList<int>());
+	test(new ArrayList<int>());
+	test(new LinkedList<int>());
 	return 0;
 }

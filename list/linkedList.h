@@ -1,13 +1,13 @@
 #ifndef __LINKEDLIST_H_
 #define __LINKEDLIST_H_
-#include "list.h"
+#include "List.h"
 
 
 
 template <class T>
-class linkedList : public list<T>{
+class LinkedList : public List<T>{
 public:
-	linkedList(){
+	LinkedList(){
 		headNode = new Node();
 		tailNode = new Node();
 
@@ -15,7 +15,7 @@ public:
 		tailNode->right = headNode;
 		size = 0;
 	};
-	~linkedList(){
+	~LinkedList(){
 		clear();
 
 		delete headNode;

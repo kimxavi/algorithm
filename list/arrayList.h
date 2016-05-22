@@ -1,6 +1,6 @@
 #ifndef __ARRAYLIST_H_
 #define __ARRAYLIST_H_
-#include "list.h"
+#include "List.h"
 	
 enum ERROR{
 	OutOfBoundError = 20,
@@ -10,15 +10,15 @@ enum ERROR{
 #define DEFAULT_SIZE (1024)
 
 template <class T>
-class arrayList : public list<T>{
+class ArrayList : public List<T>{
 public:
-	arrayList(){
+	ArrayList(){
 		_init(DEFAULT_SIZE);
 	};
-	arrayList(int _capacity){
+	ArrayList(int _capacity){
 		_init(_capacity);
 	};
-	~arrayList(){
+	~ArrayList(){
 		_clear();
 	};
 	bool add(const T& item){
