@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Sort.h"
 
-const int size = 10000;
+const int size = 1000;
 int* array;
 
 #define RANDOM	(0)
@@ -15,13 +15,14 @@ int* array;
 #define SELECTION_SORT 	(0)
 #define INSERTION_SORT 	(1)
 #define BUBBLE_SORT		(2)
+#define QUICK_SORT		(3)
 
 void generateArray(int array_mode){
 	array = new int[size];
 
 	for(int i =0; i< size;i++){
 		if(array_mode == RANDOM)
-			array[i] = random();
+			array[i] = random()%100;
 		else if(array_mode == SORTED)
 			array[i] = i;
 		else if(array_mode == REVERSE)
@@ -50,6 +51,9 @@ void sortArray(int mode,int array_mode){
 		case BUBBLE_SORT:
 			Sort::bubbleSort(array,size);
 		break;
+		case QUICK_SORT:
+			Sort::quickSort(array,size);
+		break;
 	}
 	clock_t etime = clock();
 	
@@ -68,13 +72,22 @@ void test(int mode){
 	printf("REVERSE[");
 	sortArray(mode, REVERSE);
 }
+void printArray(){
+	for(int i=0; i<size; i++)
+		printf("%d\n",array[i]);
+}
 
 int main(int argc,char** argv){
+	/*
 	printf("\nSELECTION_SORT\n");
 	test(SELECTION_SORT);
-	printf("\nINSERTION_SORT\n");
-	test(INSERTION_SORT);
 	printf("\nBUBBLE_SORT\n");
 	test(BUBBLE_SORT);
+	*/
+	printf("\nINSERTION_SORT\n");
+	test(INSERTION_SORT);
+	printf("\nQUICK_SORT\n");
+	test(QUICK_SORT);
+
 	return 0;
 }

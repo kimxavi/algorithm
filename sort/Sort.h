@@ -45,9 +45,39 @@ namespace Sort{
 			}
 		}
 	};
+	template <class T> static void 
+	quickSort(T* array, int size){
+		if(size > 0){
+			int left = 0;
+			int right = size;
+/*
+			int mid = (left + right )/2;
+			if(array[mid] < array[left]){
+			}else if(array[mid] > array[left]){
+			}else{
+			}
+*/
+
+			T pivot = array[left];
+
+			while(1){
+				do{
+					left++;
+				}while(array[left] < pivot  && left < size );
+				do{
+					right--;
+				}while(array[right] > pivot && right > 0);
+				if(left > right) break;
+				swap(array[left], array[right]);
+			}
+			swap(array[0],array[right]);
+
+			quickSort(array,right);
+			quickSort(array+right+1 , size -right -1 );
+		}
+	};
 	/*
 	static bool mergeSort(){};
-	static bool queckSort(){};
 	static bool heapSort(){};
 	static bool shellSort(){};
 	static bool radixSort(){};
