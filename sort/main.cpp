@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Sort.h"
 
-const int size = 1000;
+const int size = 10000;
 int* array;
 
 #define RANDOM	(0)
@@ -78,12 +78,10 @@ void printArray(){
 }
 
 int main(int argc,char** argv){
-	/*
 	printf("\nSELECTION_SORT\n");
 	test(SELECTION_SORT);
 	printf("\nBUBBLE_SORT\n");
 	test(BUBBLE_SORT);
-	*/
 	printf("\nINSERTION_SORT\n");
 	test(INSERTION_SORT);
 	printf("\nQUICK_SORT\n");

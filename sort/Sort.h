@@ -26,13 +26,12 @@ namespace Sort{
 	template <class T> static void 
 	insertionSort(T* array, int size){
 		for(int i = 1; i<size;i++){
-			int j = i;
-			do{	
-				if( array[j] < array[j-1])
-					swap(array[j], array[j-1]);
-				else
-					break;
-			}while(--j);
+			int j	= i;
+			int val = array[i]; 
+			while(--j > 0 && array[j] > val){
+				array[j+1] = array[j];
+			}
+			array[j] = val;
 		}
 	};
 	template <class T> static void 
@@ -50,13 +49,15 @@ namespace Sort{
 		if(size > 0){
 			int left = 0;
 			int right = size;
-/*
-			int mid = (left + right )/2;
-			if(array[mid] < array[left]){
-			}else if(array[mid] > array[left]){
-			}else{
+
+			int mid = (left + right-1 )/2;
+			//mid< left< right, right<left<mid
+			if( (array[left] > array[mid] && array[right] > array[left]) || (array[mid] > array[left] && array[left] > array[right])){
+				swap(array[mid],array[left]);
+			//mid< right< left, left<right<mid
+			}else if((array[mid] > array[right] && array[right] > array[left]) || (array[right] > array[mid] && array[left] > array[right])){
+				swap(array[mid],array[right]);
 			}
-*/
 
 			T pivot = array[left];
 
@@ -76,8 +77,11 @@ namespace Sort{
 			quickSort(array+right+1 , size -right -1 );
 		}
 	};
+	template <class T> static void 
+	mergeSort(T* array, int size){
+
+	}
 	/*
-	static bool mergeSort(){};
 	static bool heapSort(){};
 	static bool shellSort(){};
 	static bool radixSort(){};
