@@ -51,12 +51,11 @@ namespace Sort{
 			int right = size;
 
 			int mid = (left + right-1 )/2;
-			//mid< left< right, right<left<mid
-			if( (array[left] > array[mid] && array[right] > array[left]) || (array[mid] > array[left] && array[left] > array[right])){
-				swap(array[mid],array[left]);
-			//mid< right< left, left<right<mid
-			}else if((array[mid] > array[right] && array[right] > array[left]) || (array[right] > array[mid] && array[left] > array[right])){
-				swap(array[mid],array[right]);
+			if( (array[left] > array[mid] && array[right-1] > array[left]) || (array[mid] > array[left] && array[left] > array[right-1])){
+			}else if((array[mid] > array[right-1] && array[right-1] > array[left]) || (array[right-1] > array[mid] && array[left] > array[right-1])){
+				swap(array[left],array[right-1]);
+			}else{
+				swap(array[left],array[mid]);
 			}
 
 			T pivot = array[left];

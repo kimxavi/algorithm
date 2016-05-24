@@ -22,12 +22,16 @@ void generateArray(int array_mode){
 
 	for(int i =0; i< size;i++){
 		if(array_mode == RANDOM)
-			array[i] = random()%100;
+			array[i] = random();
 		else if(array_mode == SORTED)
 			array[i] = i;
 		else if(array_mode == REVERSE)
-			array[size - i] = i;
+			array[i] = size - i;
 	}
+}
+void printArray(){
+	for(int i=0; i<size; i++)
+		printf("%d\n",array[i]);
 }
 bool checkSort(){
 	for(int i = 0; i<size-1;i++){
@@ -71,10 +75,6 @@ void test(int mode){
 	sortArray(mode, SORTED);
 	printf("REVERSE[");
 	sortArray(mode, REVERSE);
-}
-void printArray(){
-	for(int i=0; i<size; i++)
-		printf("%d\n",array[i]);
 }
 
 int main(int argc,char** argv){
