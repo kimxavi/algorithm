@@ -78,12 +78,31 @@ namespace Sort{
 	};
 	template <class T> static void 
 	mergeSort(T* array, int size){
+		if(size > 1){
+			int mid = size/2;
 
+			mergeSort(array, mid);
+			mergeSort(array+ mid, size - mid);
+
+			int aIndex = 0;
+			int bIndex = mid;
+
+			int tmpIndex = 0;
+			T* tmp = new T[size];
+
+			while(aIndex < mid && bIndex < size)
+				tmp[tmpIndex++] = (array[aIndex] < array[bIndex])? array[aIndex++] : array[bIndex++];
+			while(aIndex < mid)
+				tmp[tmpIndex++] = array[aIndex++]; 
+			while(bIndex < size)
+				tmp[tmpIndex++] = array[bIndex++];
+
+			for(int i = 0; i<size;i++)
+			{
+				array[i] = tmp[i];
+			}
+			delete [] tmp;
+		}
 	}
-	/*
-	static bool heapSort(){};
-	static bool shellSort(){};
-	static bool radixSort(){};
-	*/
 };
 #endif

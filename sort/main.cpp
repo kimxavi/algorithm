@@ -16,6 +16,7 @@ int* array;
 #define INSERTION_SORT 	(1)
 #define BUBBLE_SORT		(2)
 #define QUICK_SORT		(3)
+#define MERGE_SORT		(4)
 
 void generateArray(int array_mode){
 	array = new int[size];
@@ -58,6 +59,9 @@ void sortArray(int mode,int array_mode){
 		case QUICK_SORT:
 			Sort::quickSort(array,size);
 		break;
+		case MERGE_SORT:
+			Sort::mergeSort(array,size);
+		break;
 	}
 	clock_t etime = clock();
 	
@@ -77,6 +81,15 @@ void test(int mode){
 	sortArray(mode, REVERSE);
 }
 
+void SortTest(){
+	generateArray(RANDOM);
+	printArray();
+	Sort::mergeSort(array,size);
+	printf("\n");
+	printArray();
+	delete [] array;
+}
+
 int main(int argc,char** argv){
 	printf("\nSELECTION_SORT\n");
 	test(SELECTION_SORT);
@@ -86,6 +99,8 @@ int main(int argc,char** argv){
 	test(INSERTION_SORT);
 	printf("\nQUICK_SORT\n");
 	test(QUICK_SORT);
+	printf("\nMERGE_SORT\n");
+	test(MERGE_SORT);
 
 	return 0;
 }
