@@ -2,6 +2,11 @@
 #define __LIST_H_
 #include <stdio.h>
 
+enum ERROR{
+	OutOfBoundError = 20,
+	MemoryAllocError
+};
+
 template <class T>
 class List{
 public:

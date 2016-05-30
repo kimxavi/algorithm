@@ -1,11 +1,6 @@
 #ifndef __ARRAYLIST_H_
 #define __ARRAYLIST_H_
 #include "List.h"
-	
-enum ERROR{
-	OutOfBoundError = 20,
-	MemoryAllocError
-};
 
 #define DEFAULT_SIZE (1024)
 

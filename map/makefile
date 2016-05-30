@@ -1,5 +1,5 @@
 CC = g++ 
-OBJS = main.o LinkedList.o ArrayList.o List.o Stack.o Queue.o
+OBJS = Map.o BtreeMap.o main.o
 TARGET = test 
  
 .SUFFIXES : .cpp .o
