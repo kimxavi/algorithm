@@ -34,7 +34,17 @@ BtreeMap<K,V>::BtreeMap(){
 
 template <class K,class V>
 BtreeMap<K,V>::~BtreeMap(){
-	delete root->left(0);
+	Queue<pNode> queue;
+	queue.push(root->left(0));
+	pNode c;
+
+	while( !queue.isEmpty() && (c = queue.pop()) != NULL){
+		int i = 0;
+		while(c->left(i) != NULL && i < DCOUNT){
+			queue.push(c->left(i++));
+		}
+		delete c;
+	}
 	delete root;
 }
 
@@ -45,7 +55,6 @@ V BtreeMap<K,V>::get(const K& key) {
 }
 template <class K,class V>
 V BtreeMap<K,V>::put(const K& key,const V& value){
-	printf("put : %d\n",key);
 	pNode p = root;
 	pNode c = root->left(0);
 	Stack<pNode> stack;
@@ -57,7 +66,7 @@ V BtreeMap<K,V>::put(const K& key,const V& value){
 		while(1){
 			stack.push(p);
 			for(i = 0; i< c->getSize() && c->key(i) < key;i++);
-			if(c->left(i) == NULL) break;
+			if(c->isLeaf()) break;
 			p = c;
 			c = c->left(i);
 		}

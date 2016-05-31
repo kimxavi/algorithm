@@ -113,7 +113,7 @@ void Node<K,V>::remove(int index, pData& _data, Node*& _left){
 template <class K, class V>
 pNode Node<K,V>::splitFirst(){
 	 pNode newNode = new Node<K,V>();
-	 newNode->insert(data[0], left(0), NULL);
+	 newNode->insert(data[0], left(0), this);
 	 _moveLeft(0);
 	 return newNode;
 }
