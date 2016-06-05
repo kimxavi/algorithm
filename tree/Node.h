@@ -25,6 +25,7 @@ public:
 	~Node();
 	K key(const int i) const{return data[i]->key;};
 	K& key(const int i){return data[i]->key;};
+	pData getData(const int i) const{return data[i];};
 	Node* left(const int i)const{return child[i];};
 	Node*& left(const int i){return child[i];};
 	Node* right(const int i)const{return child[i+1];};
@@ -38,10 +39,8 @@ public:
 	pNode splitFirst();
 	void splitNode(pNode p);
 	void print();
-
-private:
-	void _moveRight(int index);
-	void _moveLeft(int index);
+	void moveLeft(int index);
+	void moveRight(int index);
 
 private:
 	Node** child;
@@ -66,7 +65,7 @@ Node<K,V>::~Node(){
 	delete [] data;
 };
 template <class K, class V>
-void Node<K,V>::_moveRight(int index){
+void Node<K,V>::moveRight(int index){
 	for(int i = size;i >index;i--){
 		data[i]  = data[i-1];
 		right(i) = right(i-1);
@@ -76,7 +75,7 @@ void Node<K,V>::_moveRight(int index){
 	left(index) = NULL;
 }
 template <class K, class V>
-void Node<K,V>::_moveLeft(int index){
+void Node<K,V>::moveLeft(int index){
 	for(int i =index;i <size-1;i++){
 		data[i]  = data[i+1];
 		left(i)	 = left(i+1);
@@ -91,7 +90,7 @@ template <class K, class V>
 void Node<K,V>::insert(pData _data, Node* _left, Node* _right){
 	int i = size;
 	while(i >0 && key(i-1) >= _data->key) i--;
-	_moveRight(i);
+	moveRight(i);
 	data[i]  = _data;
 	left(i)  = _left;
 	right(i) = _right;
@@ -108,23 +107,6 @@ template <class K, class V>
 void Node<K,V>::remove(int index, pData& _data, Node*& _left){
 	 _data = data[index];
 	 _left = left(index); 
-	 _moveLeft(index);
-}
-template <class K, class V>
-pNode Node<K,V>::splitFirst(){
-	 pNode newNode = new Node<K,V>();
-	 newNode->insert(data[0], left(0), this);
-	 _moveLeft(0);
-	 return newNode;
-}
-template <class K, class V>
-void Node<K,V>::splitNode(pNode p){
-	pNode left = new Node<K,V>();
-	for(int i = 0; i < DCOUNT/2;i++){
-		left->insert(new Data<K,V>(key(i),0), this->left(i), this->right(i));
-		_moveLeft(0);
-	}
-	p->insert(new Data<K,V>( key(0),0),left,this);
-	_moveLeft(0);
+	 moveLeft(index);
 }
 #endif
